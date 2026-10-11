@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d3b2e">
+<title>Stray Care Foundation · The Kindness Trail</title>
+<meta name="description" content="Walk the Kindness Trail with Stray Care Foundation Belagavi. Meet six street dogs, take a gentle quiz, and discover your kindness match.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --forest:#0d3b2e;
+  --forest-deep:#072019;
+  --forest-mid:#1a5c47;
+  --sage:#8fb8a0;
+  --cream:#f4efe6;
+  --cream-soft:#e8e0d2;
+  --gold:#d4a843;
+  --gold-soft:#e8c46a;
+  --ink:#2a2a22;
+  --bg:#f4efe6;
+}
+html,body{width:100%;min-height:100%;background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--ink);overflow-x:hidden;scroll-behavior:smooth}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--forest);outline-offset:4px}
+
+/* HEADER */
+.hud{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding:16px 28px;background:rgba(244,239,230,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(13,59,46,.12)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:42px;height:42px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;color:var(--cream);font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;letter-spacing:.02em}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;color:var(--forest);letter-spacing:.02em}
+.brand-tag{font-size:.7rem;color:var(--forest-mid);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.hud-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.score-chip{background:var(--forest);color:var(--cream);border-radius:40px;padding:9px 20px;font-size:.82rem;letter-spacing:.06em;display:flex;align-items:center;gap:10px}
+.score-chip b{color:var(--gold-soft);font-size:1rem;font-weight:600}
+.progress{display:inline-flex;gap:4px}
+.progress i{width:7px;height:7px;border-radius:50%;background:rgba(244,239,230,.25);transition:.4s}
+.progress i.on{background:var(--gold-soft)}
+.community-btn{border:1.5px solid var(--forest);background:var(--forest);color:var(--cream);border-radius:40px;padding:9px 18px;font-size:.78rem;letter-spacing:.06em;cursor:pointer;transition:.25s;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.community-btn:hover{background:var(--forest-mid);transform:translateY(-1px)}
+
+/* HERO */
+.hero{position:relative;padding:80px 28px 60px;text-align:center;overflow:hidden}
+.hero-deco{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.5}
+.hero-deco::before,.hero-deco::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(143,184,160,.35),transparent 70%);filter:blur(40px)}
+.hero-deco::before{top:-120px;left:-100px}
+.hero-deco::after{bottom:-140px;right:-120px;background:radial-gradient(circle,rgba(212,168,67,.25),transparent 70%)}
+.hero-content{position:relative;z-index:2;max-width:820px;margin:0 auto}
+.hero-eyebrow{display:inline-block;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--forest-mid);background:rgba(13,59,46,.08);padding:7px 18px;border-radius:40px;margin-bottom:22px;font-weight:600}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.08;color:var(--forest);margin-bottom:20px;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--forest-mid)}
+.hero p{font-size:1.05rem;line-height:1.7;color:#4a5548;max-width:580px;margin:0 auto 30px}
+.hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.pill-btn{display:inline-block;padding:14px 30px;border-radius:40px;font-size:.9rem;font-weight:600;letter-spacing:.04em;cursor:pointer;border:none;transition:.25s;text-decoration:none}
+.pill-primary{background:var(--forest);color:var(--cream)}
+.pill-primary:hover{background:var(--forest-mid);transform:translateY(-2px);box-shadow:0 10px 24px rgba(13,59,46,.2)}
+.pill-outline{background:transparent;color:var(--forest);border:1.5px solid var(--forest)}
+.pill-outline:hover{background:var(--forest);color:var(--cream);transform:translateY(-2px)}
+.scroll-hint{display:block;margin-top:36px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--forest-mid);font-weight:600;text-decoration:none;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* SECTION HEAD */
+.section-head{text-align:center;margin:0 auto 44px;max-width:640px;padding:0 28px}
+.section-eyebrow{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--forest-mid);font-weight:600;margin-bottom:12px;display:inline-block}
+.section-head h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(1.7rem,3.5vw,2.4rem);color:var(--forest);line-height:1.2;margin-bottom:12px}
+.section-head p{font-size:1rem;line-height:1.7;color:#4a5548}
+
+/* DOG GRID */
+.dog-section{padding:40px 28px 80px;max-width:1200px;margin:0 auto}
+.dog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;justify-items:center}
+.dog-card{width:100%;max-width:340px;padding:24px 20px 26px;text-align:center;cursor:pointer;position:relative;border-radius:22px;background:#fff;border:1.5px solid rgba(13,59,46,.08);box-shadow:0 4px 18px rgba(13,59,46,.06);transition:transform .35s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s}
+.dog-card:hover,.dog-card:focus-visible{transform:translateY(-6px);border-color:var(--sage);box-shadow:0 18px 38px rgba(13,59,46,.13)}
+.dog-card.answered{opacity:.55;filter:grayscale(.35);cursor:default}
+.dog-card.answered:hover{transform:none;box-shadow:0 4px 18px rgba(13,59,46,.06);border-color:rgba(13,59,46,.08)}
+.dog-card.answered::after{content:'✓';position:absolute;top:14px;right:16px;width:26px;height:26px;border-radius:50%;background:var(--forest);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700}
+.dog-svg-wrap{width:100%;margin-bottom:6px;position:relative}
+.dog-svg-wrap svg{display:block;width:100%;height:auto;overflow:visible}
+.dog-name{margin-top:6px;font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:var(--forest);letter-spacing:.02em}
+.dog-story{margin:6px auto 0;max-width:240px;font-size:.9rem;color:#6a7568;line-height:1.5;font-style:italic}
+.dog-of-day-badge{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--forest);font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;border-radius:40px;box-shadow:0 6px 16px rgba(212,168,67,.4);z-index:3;white-space:nowrap}
+.dog-card.dog-of-day{border-color:var(--gold);box-shadow:0 8px 28px rgba(212,168,67,.22)}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .35s;z-index:100}
+.overlay.show{opacity:1;pointer-events:auto}
+.modal-backdrop{background:rgba(13,59,46,.55);backdrop-filter:blur(8px)}
+.panel{position:relative;width:100%;background:var(--cream);border-radius:28px;box-shadow:0 30px 80px rgba(13,59,46,.3);overflow:hidden}
+.modal{max-width:520px;padding:40px 34px 34px;transform:scale(.9);transition:transform .4s cubic-bezier(.34,1.56,.64,1);border:2px solid var(--forest)}
+.overlay.show .modal{transform:scale(1)}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--forest),var(--sage),var(--gold))}
+.modal-x{position:absolute;top:16px;right:20px;background:none;border:0;color:#8a9488;font-size:1.5rem;cursor:pointer;line-height:1;padding:4px 8px;border-radius:50%;transition:.2s;z-index:2}
+.modal-x:hover{color:var(--forest);background:rgba(13,59,46,.06)}
+.modal-dog-name{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--forest);text-align:center;letter-spacing:.02em;margin-bottom:4px}
+.modal-dog-story{font-size:.95rem;color:#6a7568;text-align:center;font-style:italic;margin-bottom:24px}
+.modal-question{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:500;color:var(--ink);text-align:center;line-height:1.5;padding:20px 14px;margin-bottom:22px;background:rgba(13,59,46,.04);border-radius:16px}
+.modal-answers{display:flex;flex-direction:column;gap:10px}
+.modal-answer{background:#fff;border:1.5px solid rgba(13,59,46,.14);border-radius:14px;padding:15px 20px;color:var(--ink);font-size:.94rem;text-align:left;cursor:pointer;transition:.25s;line-height:1.4}
+.modal-answer:hover{background:rgba(143,184,160,.12);border-color:var(--forest);transform:translateX(4px)}
+
+/* INTRO */
+.intro-card{max-width:480px;padding:48px 38px 40px;text-align:center;animation:introIn 1s cubic-bezier(.34,1.56,.64,1);border:2px solid var(--forest)}
+@keyframes introIn{from{opacity:0;transform:scale(.9) translateY(20px)}}
+.intro-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px}
+.intro-brand-mark{width:52px;height:52px;border-radius:50%;background:var(--forest);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.intro-brand-text{text-align:left;line-height:1.15}
+.intro-brand-text .name{font-family:'Fraunces',serif;font-weight:600;color:var(--forest);font-size:1rem}
+.intro-brand-text .tag{font-size:.68rem;color:var(--forest-mid);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.intro-title{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--forest);line-height:1.15;margin-bottom:12px}
+.intro-sub{font-size:.98rem;color:#4a5548;line-height:1.7;margin-bottom:28px}
+.intro-form{display:flex;flex-direction:column;gap:12px;max-width:340px;margin:0 auto}
+.intro-form input{background:#fff;border:1.5px solid rgba(13,59,46,.16);border-radius:40px;padding:15px 22px;color:var(--ink);font:1rem 'Inter',sans-serif;outline:none;transition:.25s}
+.intro-form input:focus{border-color:var(--forest);box-shadow:0 0 0 4px rgba(143,184,160,.18)}
+.intro-form input::placeholder{color:#a3b0a3}
+.btn{background:var(--forest);border:none;color:var(--cream);padding:16px 32px;border-radius:40px;font-size:.94rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:.25s;text-decoration:none;display:inline-block;text-align:center}
+.btn:hover{background:var(--forest-mid);transform:translateY(-2px);box-shadow:0 12px 26px rgba(13,59,46,.22)}
+.btn.small{padding:12px 24px;font-size:.82rem;margin:0 4px 8px}
+.btn-soft{background:transparent;border:1.5px solid var(--forest);color:var(--forest)}
+.btn-soft:hover{background:var(--forest);color:var(--cream)}
+.btn-gold{background:var(--gold);color:var(--forest)}
+.btn-gold:hover{background:var(--gold-soft)}
+.intro-status{min-height:1.3rem;font-size:.86rem;color:#b05a4a;font-weight:500}
+.intro-note{margin-top:20px;font-size:.8rem;color:#8a9488;letter-spacing:.04em}
+
+/* REVEAL */
+.reveal-card{max-width:560px;padding:48px 40px 40px;text-align:center;border:2px solid var(--forest);animation:revealIn .8s cubic-bezier(.34,1.56,.64,1);max-height:92vh;overflow-y:auto}
+@keyframes revealIn{from{opacity:0;transform:scale(.92)}}
+.match-dog{width:min(280px,62vw);margin:0 auto 8px;cursor:pointer}
+.match-dog svg{display:block;width:100%;height:auto;overflow:visible}
+.match-dog.happy{animation:hop .8s ease}
+@keyframes hop{0%,100%{transform:translateY(0)}30%{transform:translateY(-22px)}60%{transform:translateY(-8px)}}
+.match-eyebrow{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--forest-mid);font-weight:600;margin-bottom:10px}
+.match-name{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:600;color:var(--forest);line-height:1;margin-bottom:8px}
+.match-title{font-family:'Fraunces',serif;font-size:1.25rem;font-style:italic;color:var(--gold);margin-bottom:20px}
+.match-desc{font-size:1rem;line-height:1.7;color:#4a5548;max-width:440px;margin:0 auto 20px}
+.match-quote{font-family:'Fraunces',serif;font-size:1.05rem;font-style:italic;color:var(--forest);padding:16px 20px;background:rgba(143,184,160,.14);border-radius:16px;max-width:440px;margin:0 auto 24px}
+.letter-status{min-height:1.3rem;font-size:.88rem;color:#6a7568;margin-bottom:20px;font-weight:500}
+.letter-status.sending{color:var(--gold)}
+.letter-status.success{color:#3f8a5a}
+.letter-status.error{color:#b05a4a}
+.share-row{margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+
+/* STORY */
+.story-section{padding:80px 28px;background:linear-gradient(180deg,rgba(143,184,160,.08),transparent)}
+.story-inner{max-width:1000px;margin:0 auto}
+.story-stage{position:relative;background:#fff;border-radius:28px;border:1.5px solid rgba(13,59,46,.1);box-shadow:0 20px 50px rgba(13,59,46,.08);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:400px}
+.story-visual{position:relative;background:linear-gradient(160deg,var(--forest),var(--forest-mid));display:flex;align-items:center;justify-content:center;padding:40px;overflow:hidden}
+.story-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(143,184,160,.25),transparent 60%)}
+.story-visual .scene-dog{position:relative;width:100%;max-width:260px;transition:opacity .5s ease,transform .5s ease}
+.story-visual .scene-dog.fade{opacity:0;transform:scale(.9)}
+.story-visual .scene-dog svg{display:block;width:100%;height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.25))}
+.story-sky{position:absolute;top:0;left:0;right:0;height:60%;background:linear-gradient(180deg,var(--scene-sky,#8fb8a0),transparent);transition:background 1.2s ease}
+.story-ground{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(0deg,rgba(7,32,25,.4),transparent)}
+.story-content{padding:48px 44px;display:flex;flex-direction:column;justify-content:center}
+.story-scene-num{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--forest-mid);font-weight:600;margin-bottom:12px}
+.story-scene-title{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;color:var(--forest);line-height:1.15;margin-bottom:14px}
+.story-scene-text{font-size:1rem;line-height:1.8;color:#4a5548;max-width:420px;margin-bottom:28px;transition:opacity .4s ease}
+.story-scene-text.fade{opacity:0}
+.story-nav{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.story-arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--forest);background:transparent;color:var(--forest);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:.25s;font-family:inherit}
+.story-arrow:hover{background:var(--forest);color:var(--cream);transform:scale(1.05)}
+.story-dots{display:flex;gap:8px;margin-left:8px}
+.story-dots button{width:10px;height:10px;border-radius:50%;border:none;background:rgba(13,59,46,.18);cursor:pointer;transition:.3s;padding:0}
+.story-dots button.on{background:var(--forest);width:26px;border-radius:8px}
+.story-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(13,59,46,.08)}
+.story-progress-fill{height:100%;width:0;background:var(--gold);transition:width .2s linear}
+.story-cta{display:inline-block;margin-top:8px;padding:12px 24px;border-radius:40px;background:var(--gold);color:var(--forest);font-weight:600;font-size:.86rem;text-decoration:none;transition:.25s;border:none;cursor:pointer;font-family:inherit}
+.story-cta:hover{background:var(--gold-soft);transform:translateY(-2px)}
+@media(max-width:860px){
+  .story-stage{grid-template-columns:1fr;min-height:auto}
+  .story-visual{padding:50px 20px 30px;min-height:260px}
+  .story-visual .scene-dog{max-width:220px}
+  .story-content{padding:32px 24px 28px}
+  .story-scene-title{font-size:1.4rem}
+}
+
+/* IMPACT QUIZ */
+.impact-quiz-section{padding:80px 28px;background:linear-gradient(180deg,rgba(143,184,160,.12),transparent)}
+.impact-quiz-inner{max-width:720px;margin:0 auto}
+.quiz-card{background:#fff;border-radius:28px;border:1.5px solid rgba(13,59,46,.1);box-shadow:0 20px 50px rgba(13,59,46,.08);padding:40px 36px 36px;position:relative;overflow:hidden}
+.quiz-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--forest),var(--sage),var(--gold))}
+.quiz-progress{display:flex;justify-content:center;gap:8px;margin-bottom:26px}
+.quiz-progress i{width:32px;height:5px;border-radius:3px;background:rgba(13,59,46,.14);transition:.35s}
+.quiz-progress i.on{background:var(--forest)}
+.quiz-progress i.done{background:var(--gold)}
+.quiz-step{display:none;animation:quizIn .45s cubic-bezier(.34,1.56,.64,1)}
+.quiz-step.active{display:block}
+@keyframes quizIn{from{opacity:0;transform:translateY(12px)}}
+.quiz-step-num{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--forest-mid);font-weight:600;text-align:center;margin-bottom:12px}
+.quiz-step-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.8vw,1.75rem);font-weight:600;color:var(--forest);text-align:center;line-height:1.25;margin-bottom:8px}
+.quiz-step-sub{font-size:.92rem;color:#6a7568;text-align:center;line-height:1.6;margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto}
+.quiz-options{display:flex;flex-direction:column;gap:12px;max-width:520px;margin:0 auto}
+.quiz-option{background:var(--cream);border:1.5px solid rgba(13,59,46,.12);border-radius:16px;padding:18px 22px;color:var(--ink);font-size:.98rem;text-align:left;cursor:pointer;transition:.25s;line-height:1.5;display:flex;align-items:center;gap:14px;font-family:inherit}
+.quiz-option:hover{border-color:var(--forest);background:#fff;transform:translateY(-2px);box-shadow:0 8px 22px rgba(13,59,46,.1)}
+.quiz-option-icon{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:rgba(143,184,160,.28);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1rem;color:var(--forest);font-weight:600}
+.quiz-option.selected{border-color:var(--forest);background:#fff;box-shadow:0 8px 22px rgba(13,59,46,.12)}
+.quiz-option.selected .quiz-option-icon{background:var(--forest);color:var(--cream)}
+.quiz-option-text{flex:1}
+
+.quiz-result{display:none;text-align:center;animation:quizIn .55s cubic-bezier(.34,1.56,.64,1)}
+.quiz-result.active{display:block}
+.quiz-result-badge{display:inline-block;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--forest-mid);background:rgba(13,59,46,.08);padding:7px 16px;border-radius:40px;font-weight:600;margin-bottom:18px}
+.quiz-result-emoji{font-family:'Fraunces',serif;font-size:3rem;line-height:1;margin-bottom:12px;color:var(--forest)}
+.quiz-result-title{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3.5vw,2.2rem);font-weight:600;color:var(--forest);line-height:1.15;margin-bottom:10px}
+.quiz-result-tagline{font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--gold);margin-bottom:22px}
+.quiz-result-desc{font-size:1rem;line-height:1.75;color:#4a5548;max-width:520px;margin:0 auto 26px}
+.quiz-result-actions{display:flex;flex-direction:column;gap:10px;max-width:340px;margin:0 auto 18px}
+.quiz-result-actions .btn,.quiz-result-actions a{width:100%;padding:15px;font-size:.9rem}
+.quiz-restart{background:none;border:none;color:#8a9488;font-size:.82rem;cursor:pointer;text-decoration:underline;padding:6px;font-family:inherit}
+.quiz-restart:hover{color:var(--forest)}
+.quiz-share-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:18px;border-top:1px dashed rgba(13,59,46,.12)}
+.quiz-share-row button{background:transparent;border:1.5px solid var(--forest);color:var(--forest);border-radius:40px;padding:9px 16px;font-size:.78rem;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.quiz-share-row button:hover{background:var(--forest);color:var(--cream)}
+
+@media(max-width:700px){
+  .quiz-card{padding:32px 22px 28px}
+  .quiz-option{padding:15px 18px;font-size:.94rem}
+  .quiz-option-icon{width:32px;height:32px;font-size:.92rem}
+}
+
+/* CARE */
+.care-section{padding:80px 28px;background:linear-gradient(180deg,transparent,rgba(143,184,160,.12));margin-top:40px}
+.care-inner{max-width:1000px;margin:0 auto}
+.care-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.stat{background:#fff;padding:28px 20px;text-align:center;border-radius:18px;border:1.5px solid rgba(13,59,46,.08)}
+.stat b{display:block;font-family:'Fraunces',serif;font-size:2.2rem;font-weight:600;color:var(--forest);margin-bottom:6px}
+.stat span{font-size:.86rem;color:#6a7568;letter-spacing:.03em}
+.care-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.care-card{background:#fff;padding:30px 26px;border-radius:20px;border:1.5px solid rgba(13,59,46,.08);display:flex;flex-direction:column}
+.care-card h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;color:var(--forest);margin-bottom:8px}
+.care-card p{font-size:.92rem;color:#6a7568;margin-bottom:18px;line-height:1.6}
+.care-card input,.care-card select{width:100%;margin-bottom:12px;background:var(--cream);border:1.5px solid rgba(13,59,46,.14);border-radius:40px;padding:13px 18px;color:var(--ink);font:.95rem 'Inter',sans-serif;outline:none;transition:.2s;font-family:inherit}
+.care-card input:focus,.care-card select:focus{border-color:var(--forest)}
+.chips{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.chip{background:var(--cream);border:1.5px solid rgba(13,59,46,.14);border-radius:40px;padding:8px 18px;color:var(--ink);cursor:pointer;font-size:.86rem;font-weight:500;transition:.2s}
+.chip.on,.chip:hover{border-color:var(--forest);background:var(--forest);color:var(--cream)}
+.care-card .btn{width:100%;padding:14px;font-size:.86rem;margin-top:auto}
+
+.impact-line{margin:0 0 16px;padding:14px 18px;background:linear-gradient(135deg,rgba(143,184,160,.18),rgba(212,168,67,.12));border-radius:14px;font-size:.86rem;color:var(--forest);line-height:1.5;border-left:3px solid var(--gold)}
+.impact-line b{font-weight:600;color:var(--forest)}
+
+/* QR MODAL */
+.qr-panel{max-width:460px;padding:44px 34px 36px;text-align:center;border:2px solid var(--forest);animation:introIn .7s cubic-bezier(.34,1.56,.64,1)}
+.qr-panel h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;color:var(--forest);margin-bottom:6px;letter-spacing:.01em}
+.qr-amount-big{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:600;color:var(--forest);line-height:1;margin:14px 0 6px;letter-spacing:-.02em}
+.qr-amount-big::before{content:'₹';font-size:2rem;vertical-align:super;margin-right:4px;color:var(--gold)}
+.qr-for-line{font-size:.86rem;color:#6a7568;margin-bottom:24px;letter-spacing:.02em}
+.qr-wrap{display:inline-block;padding:16px;background:#fff;border-radius:20px;border:2px solid rgba(13,59,46,.1);box-shadow:0 8px 26px rgba(13,59,46,.12);margin-bottom:18px;position:relative}
+.qr-wrap::before{content:'';position:absolute;inset:-6px;border-radius:26px;border:2px dashed var(--sage);animation:spin 22s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.qr-wrap img{display:block;width:220px;height:220px;border-radius:12px;object-fit:contain}
+.qr-verified{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;color:var(--forest);font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:rgba(143,184,160,.2);padding:6px 14px;border-radius:30px;margin-bottom:18px}
+.qr-verified::before{content:'';width:6px;height:6px;border-radius:50%;background:#3f8a5a}
+.qr-upi{display:flex;justify-content:center;align-items:center;gap:8px;font-size:.9rem;color:var(--forest);font-weight:600;margin-bottom:18px;flex-wrap:wrap}
+.qr-upi span{background:rgba(143,184,160,.2);padding:6px 14px;border-radius:30px;font-family:monospace;letter-spacing:.02em}
+.qr-upi button{background:transparent;border:1.5px solid var(--forest);color:var(--forest);border-radius:30px;padding:6px 14px;font-size:.78rem;font-weight:600;cursor:pointer;transition:.2s}
+.qr-upi button:hover{background:var(--forest);color:var(--cream)}
+.qr-note{font-size:.82rem;color:#8a9488;margin-bottom:22px;line-height:1.6}
+.qr-thanks{display:none;margin-top:16px;padding:14px 18px;background:rgba(143,184,160,.18);border-radius:14px;font-size:.9rem;color:var(--forest);font-weight:500}
+.qr-thanks.show{display:block;animation:introIn .5s ease}
+
+/* FOOTER */
+.footer{padding:48px 28px 32px;text-align:center;font-size:.82rem;color:#8a9488;border-top:1px solid rgba(13,59,46,.08);background:rgba(143,184,160,.06)}
+.footer-links{display:flex;justify-content:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.footer-links a{display:inline-flex;align-items:center;gap:6px;background:rgba(143,184,160,.15);padding:8px 16px;border-radius:40px;transition:.25s;color:var(--forest);text-decoration:none;font-weight:500}
+.footer-links a:hover{background:var(--forest);color:var(--cream)}
+.footer a{color:var(--forest);text-decoration:none;font-weight:500}
+.footer a:hover{text-decoration:underline}
+.footer .copy{margin-top:12px;font-size:.76rem;color:#8a9488}
+
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,20px);z-index:400;padding:14px 24px;border-radius:14px;background:var(--forest);color:var(--cream);font-size:.9rem;box-shadow:0 14px 40px rgba(13,59,46,.35);opacity:0;pointer-events:none;transition:.35s;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.heart{position:fixed;pointer-events:none;z-index:500;font-size:1.3rem;animation:rise 1.2s ease-out forwards}
+@keyframes rise{to{transform:translateY(-80px);opacity:0}}
+.bone{position:fixed;pointer-events:none;z-index:500;font-size:1.5rem;animation:rise 1s ease-out forwards}
+.confetti{position:fixed;top:-20px;width:9px;height:9px;z-index:600;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+.tail{transform-box:fill-box;transform-origin:100% 100%;animation:wag 1.2s ease-in-out infinite}
+@keyframes wag{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(10deg)}}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.zzz{position:absolute;top:18px;left:72%;font-family:'Fraunces',serif;font-style:italic;font-size:1.3rem;color:#a3b0a3;letter-spacing:4px;animation:zz 3.4s ease-in-out infinite;pointer-events:none}
+@keyframes zz{0%{opacity:0;transform:translate(0,10px)}40%{opacity:1}100%{opacity:0;transform:translate(12px,-22px)}}
+.dog-card:hover .dog-svg-wrap svg{animation:tilt .8s ease-in-out infinite alternate}
+@keyframes tilt{from{transform:rotate(-1deg)}to{transform:rotate(1deg)}}
+.dog-card.happy .dog-svg-wrap{animation:hop .8s ease}
+
+.treat-btn{position:fixed;left:20px;bottom:20px;z-index:50;padding:12px 22px;border-radius:40px;background:var(--forest);color:var(--cream);border:none;font-size:.82rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:.25s;box-shadow:0 10px 26px rgba(13,59,46,.28)}
+.treat-btn:hover{background:var(--forest-mid);transform:translateY(-2px)}
+.treat-btn[aria-pressed=true]{background:var(--gold);color:var(--forest)}
+.treat-mode .dog-card{cursor:copy}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .qr-wrap::before{animation:none}
+}
+
+@media(max-width:700px){
+  .hud{padding:14px 18px}
+  .hero{padding:60px 20px 40px}
+  .dog-section{padding:30px 18px 60px}
+  .story-section{padding:60px 18px}
+  .impact-quiz-section{padding:60px 18px}
+  .care-section{padding:60px 18px}
+  .care-stats{grid-template-columns:1fr;gap:12px}
+  .intro-card,.reveal-card{padding:36px 24px 28px}
+  .match-name{font-size:2rem}
+  .modal{padding:34px 22px 26px}
+  .qr-wrap img{width:180px;height:180px}
+  .hud-right{gap:8px}
+  .score-chip{padding:7px 14px;font-size:.72rem}
+  .qr-amount-big{font-size:2.6rem}
+}
+
+@media print{
+  .hud,.hero,.dog-section,.story-section,.impact-quiz-section,.care-section,.footer,.treat-btn,.toast,.overlay{display:none!important}
+  .reveal-card{display:block!important;position:static!important;box-shadow:none;border:1px solid #000;max-width:100%;page-break-inside:avoid}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<header class="hud">
+  <div class="brand">
+    <div class="brand-mark">SCF</div>
+    <div class="brand-text">
+      <span class="brand-name">Stray Care Foundation</span>
+      <span class="brand-tag">Belagavi · Connecting People, Protecting Lives</span>
+    </div>
+  </div>
+  <div class="hud-right">
+    <a href="https://chat.whatsapp.com/Ightal2PYPF5qBe8EVEqu9" target="_blank" rel="noopener" class="community-btn">Join community</a>
+    <div class="score-chip">KIND HEARTS · <b id="scoreValue">0</b> / 6 <span class="progress" id="progress"></span></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-deco"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">The Kindness Trail</span>
+    <h1>Six street dogs.<br><em>One kind heart is you.</em></h1>
+    <p>Walk the trail. Meet each dog. Answer one gentle question. At the end, we will tell you which dog matches your kindness — and send it to your inbox.</p>
+    <div class="hero-cta">
+      <a href="#trail" class="pill-btn pill-primary">Begin the Walk</a>
+      <a href="#story" class="pill-btn pill-outline">Read a Day on the Street</a>
+    </div>
+    <a href="#trail" class="scroll-hint" aria-label="Scroll to the pack">Scroll to meet the pack</a>
+  </div>
+</section>
+
+<div class="section-head" id="trail">
+  <span class="section-eyebrow">Meet the pack</span>
+  <h2>Six dogs, six stories</h2>
+  <p>Tap a dog to hear their story. Answer one question with your heart.</p>
+</div>
+
+<section class="dog-section">
+  <div class="dog-grid" id="dogGrid"></div>
+</section>
+
+<section class="story-section" id="story">
+  <div class="story-inner">
+    <div class="section-head" style="padding:0;margin-bottom:36px">
+      <span class="section-eyebrow">Story Mode</span>
+      <h2>A Day on the Street</h2>
+      <p>Five scenes from one ordinary day. Tap the arrows or wait — the story moves on its own.</p>
+    </div>
+
+    <div class="story-stage">
+      <div class="story-visual">
+        <div class="story-sky" id="storySky"></div>
+        <div class="story-ground"></div>
+        <div class="scene-dog" id="sceneDog"></div>
+      </div>
+      <div class="story-content">
+        <div class="story-scene-num" id="sceneNum">Scene 01 of 05</div>
+        <div class="story-scene-title" id="sceneTitle">Morning</div>
+        <div class="story-scene-text" id="sceneText">
+          The chai stall opens at six. The dog knows the sound of the kettle better than any alarm clock. He stretches, shakes off the night, and waits.
+        </div>
+        <div class="story-nav">
+          <button class="story-arrow" id="scenePrev" aria-label="Previous scene">←</button>
+          <button class="story-arrow" id="sceneNext" aria-label="Next scene">→</button>
+          <div class="story-dots" id="sceneDots"></div>
+        </div>
+        <button class="story-cta" id="storyCta" style="display:none">Feed a dog today</button>
+      </div>
+      <div class="story-progress"><div class="story-progress-fill" id="storyProgress"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="impact-quiz-section" id="impact-quiz">
+  <div class="impact-quiz-inner">
+    <div class="section-head" style="padding:0;margin-bottom:36px">
+      <span class="section-eyebrow">Find your path</span>
+      <h2>What kind of giver are you?</h2>
+      <p>Four gentle questions. One kind path that fits you. No wrong answers — only your kind of kindness.</p>
+    </div>
+
+    <div class="quiz-card">
+      <div class="quiz-progress" id="quizProgress">
+        <i class="on"></i><i></i><i></i><i></i>
+      </div>
+
+      <div class="quiz-step active" data-step="0">
+        <div class="quiz-step-num">Question 01 of 04</div>
+        <div class="quiz-step-title">What pulls at your heart the most?</div>
+        <div class="quiz-step-sub">When you see a street dog, what do you wish you could do first?</div>
+        <div class="quiz-options" data-quiz="q1">
+          <button class="quiz-option" data-value="feeder">
+            <span class="quiz-option-icon">1</span>
+            <span class="quiz-option-text">Make sure they never sleep hungry again</span>
+          </button>
+          <button class="quiz-option" data-value="rescuer">
+            <span class="quiz-option-icon">2</span>
+            <span class="quiz-option-text">Heal them when they are hurt or sick</span>
+          </button>
+          <button class="quiz-option" data-value="matchmaker">
+            <span class="quiz-option-icon">3</span>
+            <span class="quiz-option-text">Find them a family who will love them forever</span>
+          </button>
+          <button class="quiz-option" data-value="storyteller">
+            <span class="quiz-option-icon">4</span>
+            <span class="quiz-option-text">Make sure nobody looks away from them again</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="1">
+        <div class="quiz-step-num">Question 02 of 04</div>
+        <div class="quiz-step-title">How much time can you honestly give?</div>
+        <div class="quiz-step-sub">Be truthful — every amount matters. There is no "too little."</div>
+        <div class="quiz-options" data-quiz="q2">
+          <button class="quiz-option" data-value="few-min">
+            <span class="quiz-option-icon">1</span>
+            <span class="quiz-option-text">A few minutes a week — from my phone</span>
+          </button>
+          <button class="quiz-option" data-value="few-hours-month">
+            <span class="quiz-option-icon">2</span>
+            <span class="quiz-option-text">A few hours a month — one weekend morning</span>
+          </button>
+          <button class="quiz-option" data-value="few-hours-week">
+            <span class="quiz-option-icon">3</span>
+            <span class="quiz-option-text">A few hours a week — I want to be hands-on</span>
+          </button>
+          <button class="quiz-option" data-value="full">
+            <span class="quiz-option-icon">4</span>
+            <span class="quiz-option-text">As much as it takes — I'm ready to commit</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="2">
+        <div class="quiz-step-num">Question 03 of 04</div>
+        <div class="quiz-step-title">If you could give one thing, it would be…</div>
+        <div class="quiz-step-sub">Imagine you could only help in one way. Which one feels most like you?</div>
+        <div class="quiz-options" data-quiz="q3">
+          <button class="quiz-option" data-value="money">
+            <span class="quiz-option-icon">1</span>
+            <span class="quiz-option-text">Money — even a small monthly amount</span>
+          </button>
+          <button class="quiz-option" data-value="time">
+            <span class="quiz-option-icon">2</span>
+            <span class="quiz-option-text">Time — my hands, my presence, my effort</span>
+          </button>
+          <button class="quiz-option" data-value="home">
+            <span class="quiz-option-icon">3</span>
+            <span class="quiz-option-text">A home — my space, my family, my care</span>
+          </button>
+          <button class="quiz-option" data-value="voice">
+            <span class="quiz-option-icon">4</span>
+            <span class="quiz-option-text">A voice — my reach, my followers, my story</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="3">
+        <div class="quiz-step-num">Question 04 of 04</div>
+        <div class="quiz-step-title">What kind of difference do you want to make?</div>
+        <div class="quiz-step-sub">You have one year to create change. What would you be proudest of?</div>
+        <div class="quiz-options" data-quiz="q4">
+          <button class="quiz-option" data-value="daily">
+            <span class="quiz-option-icon">1</span>
+            <span class="quiz-option-text">Feeding a dog every single day, without fail</span>
+          </button>
+          <button class="quiz-option" data-value="emergency">
+            <span class="quiz-option-icon">2</span>
+            <span class="quiz-option-text">Being the person who shows up in an emergency</span>
+          </button>
+          <button class="quiz-option" data-value="family">
+            <span class="quiz-option-icon">3</span>
+            <span class="quiz-option-text">Seeing one street dog finally sleeping on a sofa</span>
+          </button>
+          <button class="quiz-option" data-value="movement">
+            <span class="quiz-option-icon">4</span>
+            <span class="quiz-option-text">Making 100 people care who didn't before</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quizResult">
+        <div class="quiz-result-badge">Your kind of kindness</div>
+        <div class="quiz-result-emoji" id="quizResultEmoji">♥</div>
+        <div class="quiz-result-title" id="quizResultTitle">The Feeder</div>
+        <div class="quiz-result-tagline" id="quizResultTagline">Warm, consistent, quietly powerful</div>
+        <div class="quiz-result-desc" id="quizResultDesc"></div>
+        <div class="quiz-result-actions" id="quizResultActions"></div>
+        <button class="quiz-restart" id="quizRestart">Take the quiz again</button>
+        <div class="quiz-share-row">
+          <button id="quizShareWa">Share on WhatsApp</button>
+          <button id="quizShareTw">Share on X</button>
+          <button id="quizCopy">Copy my result</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="care-section" id="care">
+  <div class="care-inner">
+    <div class="section-head" style="padding:0;margin-bottom:36px">
+      <span class="section-eyebrow">Beyond the quiz</span>
+      <h2>Real help for real street dogs</h2>
+      <p>Every tap on this page supports the work of Stray Care Foundation in Belagavi.</p>
+    </div>
+
+    <div class="care-stats">
+      <div class="stat"><b data-n="1240">0</b><span>meals fed</span></div>
+      <div class="stat"><b data-n="86">0</b><span>dogs helped</span></div>
+      <div class="stat"><b data-n="312">0</b><span>kind hearts</span></div>
+    </div>
+
+    <div class="care-grid">
+      <div class="care-card">
+        <h3>Feed a dog</h3>
+        <p>Pick a friend and an amount. One meal costs about ₹10.</p>
+        <select id="feedDog"></select>
+        <div class="chips" id="chips"></div>
+        <div class="impact-line" id="impactLine">Your <b>₹50</b> will feed <b>5 meals</b> to a street dog today.</div>
+        <button class="btn" id="feedBtn">Donate via UPI</button>
+      </div>
+      <div class="care-card">
+        <h3>Volunteer registration</h3>
+        <p>Join our feeding drives, rescue missions, or adoption events. Fill the short form and our team will reach out on WhatsApp.</p>
+        <a href="https://forms.gle/3tuZ3dyGd5mbwYPa8" target="_blank" rel="noopener" class="btn">Open volunteer form</a>
+      </div>
+      <div class="care-card">
+        <h3>Report a stray</h3>
+        <p>Injured or lost dog? Send us the details on WhatsApp and a volunteer will respond.</p>
+        <input id="repArea" placeholder="Area, e.g. Khanapur Road">
+        <input id="repNote" placeholder="What did you see?">
+        <button class="btn" id="repBtn">Report on WhatsApp</button>
+      </div>
+      <div class="care-card">
+        <h3>Spread the word</h3>
+        <p>Share the trail on Instagram. Every share brings one more kind heart.</p>
+        <button class="btn" id="instaBtn">Open Instagram</button>
+        <p style="font-size:.8rem;color:#8a9488;margin-top:14px;margin-bottom:0">Tag <strong>@stray.care.foundation</strong> and help a street dog find a friend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="https://chat.whatsapp.com/Ightal2PYPF5qBe8EVEqu9" target="_blank" rel="noopener">WhatsApp Community</a>
+    <a href="https://forms.gle/3tuZ3dyGd5mbwYPa8" target="_blank" rel="noopener">Volunteer Registration</a>
+    <a href="https://wa.me/919022470072" target="_blank" rel="noopener">+91 90224 70072</a>
+    <a href="#trail">The Kindness Trail</a>
+    <a href="#impact-quiz">Impact Quiz</a>
+    <a href="#care">Donate</a>
+  </div>
+  <p>Built with care for <a href="https://instagram.com/stray.care.foundation" target="_blank" rel="noopener">@stray.care.foundation</a> · Belagavi</p>
+  <p class="copy">© <span id="year"></span> Stray Care Foundation · All rights reserved</p>
+</footer>
+
+<div class="overlay modal-backdrop" id="modalBackdrop">
+  <div class="panel modal" role="dialog" aria-modal="true" aria-labelledby="modalDogName">
+    <button class="modal-x" id="modalX" aria-label="Close">×</button>
+    <div class="modal-dog-name" id="modalDogName"></div>
+    <div class="modal-dog-story" id="modalDogStory"></div>
+    <div class="modal-question" id="modalQuestion"></div>
+    <div class="modal-answers" id="modalAnswers"></div>
+  </div>
+</div>
+
+<div class="overlay show modal-backdrop" id="introBackdrop">
+  <div class="panel intro-card">
+    <div class="intro-brand">
+      <div class="intro-brand-mark">SCF</div>
+      <div class="intro-brand-text">
+        <div class="name">Stray Care Foundation</div>
+        <div class="tag">Belagavi</div>
+      </div>
+    </div>
+    <div class="intro-title">The Kindness Trail</div>
+    <div class="intro-sub">Six street dogs need a kind heart. Tell us who you are, walk the trail, and we will email you your dog match.</div>
+    <form class="intro-form" id="introForm" novalidate>
+      <input type="text" id="introName" placeholder="Your name" required maxlength="60" autocomplete="name">
+      <input type="email" id="introEmail" placeholder="Your email" required maxlength="120" autocomplete="email">
+      <button type="submit" class="btn">Begin the Walk</button>
+      <div class="intro-status" id="introStatus" role="alert"></div>
+    </form>
+    <div class="intro-note">No spam. Only stray dogs.</div>
+  </div>
+</div>
+
+<div class="overlay modal-backdrop" id="houseReveal">
+  <div class="panel reveal-card" id="revealCard">
+    <button class="modal-x" id="revealX" aria-label="Close">×</button>
+    <div class="match-dog" id="matchDog" title="Tap to give a treat"></div>
+    <div class="match-eyebrow">Your dog match</div>
+    <div class="match-name" id="houseName"></div>
+    <div class="match-title" id="matchTitle"></div>
+    <div class="match-desc" id="houseDesc"></div>
+    <div class="match-quote" id="houseQuote"></div>
+    <div class="letter-status" id="letterStatus"></div>
+    <div class="share-row">
+      <button class="btn small btn-soft" id="treatResult">Give a treat</button>
+      <button class="btn small btn-soft" id="dlCard">Save card</button>
+      <button class="btn small btn-soft" id="printCard">Print</button>
+      <button class="btn small btn-soft" id="copyMatch">Copy result</button>
+      <button class="btn small btn-soft" id="waShare">Share on WhatsApp</button>
+      <button class="btn small btn-soft" id="twShare">Share on X</button>
+    </div>
+    <button class="btn small" id="resetBtn">Walk again</button>
+  </div>
+</div>
+
+<div class="overlay modal-backdrop" id="qrBackdrop">
+  <div class="panel qr-panel">
+    <button class="modal-x" id="qrX" aria-label="Close">×</button>
+    <h3>Donate to Stray Care Foundation</h3>
+    <div class="qr-amount-big" id="qrAmountBig">500</div>
+    <div class="qr-for-line" id="qrForLine">for Bruno · about 50 meals</div>
+    <div class="qr-wrap">
+      <img id="qrImage" src="" alt="UPI QR code">
+    </div>
+    <div class="qr-verified">UPI · Amount locked</div>
+    <div class="qr-upi">
+      <span id="qrUpiId">51303201@ubin</span>
+      <button id="qrCopy">Copy UPI ID</button>
+    </div>
+    <p class="qr-note">Scan with GPay, PhonePe, Paytm, BHIM or any UPI app.<br>The amount is pre-filled — no need to type it.</p>
+    <div class="qr-thanks" id="qrThanks">
+      Thank you for your kindness. You are a good human.
+    </div>
+    <button class="btn" id="paidBtn" style="margin-top:14px">I have paid</button>
+  </div>
+</div>
+
+<button class="treat-btn" id="treatBtn" aria-pressed="false">Give treats · <span id="treatCount">0</span></button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ============================================================
+   CONFIGURATION
+   ============================================================ */
+const EMAILJS_PUBLIC_KEY = 'ILFPlwWZC5a0uHX7W';
+const EMAILJS_SERVICE_ID = 'service_h3wr9jq';
+const EMAILJS_TEMPLATE_ID = 'template_7yqznfo';
+
+const UPI_ID = '51303201@ubin';
+const UPI_NAME = 'Stray Care Foundation';
+const WHATSAPP_NUMBER = '919022470072';
+const INSTAGRAM_URL = 'https://instagram.com/stray.care.foundation';
+
+if (window.emailjs) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
+
+function buildLockedUPIQR(amount, note) {
+  const upiString =
+    `upi://pay?pa=${encodeURIComponent(UPI_ID)}` +
+    `&pn=${encodeURIComponent(UPI_NAME)}` +
+    `&am=${amount}` +
+    `&cu=INR` +
+    `&tn=${encodeURIComponent(note)}`;
+  return `https://api.qrserver.com/v1/create-qr-code/?size=440x440&margin=12&data=${encodeURIComponent(upiString)}`;
+}
+
+/* ============================================================
+   DOG ILLUSTRATION
+   ============================================================ */
+function createDogSVG(d) {
+  const id = d.id, f = d.fur, k = d.dark, band = d.band || '#f4efe6';
+  const ear = d.ear === 'pointy'
+    ? `<path d="M186 38 L182 6 L208 28 Z" fill="${k}"/><path d="M188 33 L187 17 L200 28 Z" fill="#000" opacity=".28"/>`
+    : `<path d="M188 32 C171 27 161 48 166 67 C179 70 190 56 194 40 Z" fill="${k}"/><path d="M186 38 C177 40 172 52 174 62" stroke="#000" stroke-opacity=".2" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+  const blaze = d.blaze
+    ? `<ellipse cx="160" cy="112" rx="13" ry="19" fill="#f4ead8" opacity=".78"/><ellipse cx="230" cy="62" rx="13" ry="7" fill="#f4ead8" opacity=".7"/>`
+    : '';
+  const leg = (dx) => `<g transform="translate(${dx} 0)">
+      <path d="M146 118 L167 118 C168 140 165 158 166 172 Q166 181 157 181 L147 181 Q140 181 141 172 C144 158 143 140 146 118 Z"/>
+      <path d="M62 122 L90 126 C88 148 85 160 87 172 Q87 181 78 181 L68 181 Q61 181 62 172 C65 158 64 140 62 122 Z"/>
+    </g>`;
+  return `
+  <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${d.name}, a street dog">
+    <defs>
+      <linearGradient id="fur-${id}" gradientUnits="userSpaceOnUse" x1="0" y1="28" x2="0" y2="150">
+        <stop offset="0" stop-color="${f}"/><stop offset=".6" stop-color="${f}"/><stop offset="1" stop-color="${k}"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="135" cy="186" rx="98" ry="7" fill="#000" opacity=".18"/>
+    <g fill="${k}" style="filter:brightness(.72)">${leg(-16)}</g>
+    <path class="tail" d="M58 98 C34 94 22 70 31 49 C34 42 43 43 42 51 C40 66 50 80 66 87 Z" fill="url(#fur-${id})"/>
+    <path d="M54 100 C52 82 66 74 86 74 L146 74 C166 74 176 88 176 106 C176 124 168 133 150 133 L84 133 C64 133 55 122 54 100 Z" fill="url(#fur-${id})"/>
+    <path d="M184 41 L209 60 L166 116 L141 96 Z" fill="url(#fur-${id})" stroke="url(#fur-${id})" stroke-width="8" stroke-linejoin="round"/>
+    <ellipse cx="80" cy="114" rx="27" ry="22" fill="url(#fur-${id})"/>
+    <g fill="url(#fur-${id})">${leg(0)}</g>
+    <ellipse cx="108" cy="80" rx="42" ry="4.5" fill="#fff" opacity=".13"/>
+    ${blaze}
+    <path d="M178 52 C176 36 190 26 206 30 C216 33 224 40 240 50 C247 54 247 64 240 68 C232 72 222 72 214 72 C202 78 182 72 178 52 Z" fill="url(#fur-${id})"/>
+    <ellipse cx="228" cy="61" rx="15" ry="7.5" fill="#fff" opacity=".12"/>
+    ${ear}
+    <ellipse cx="243" cy="56" rx="4.6" ry="3.6" fill="#0a0a0a"/>
+    <ellipse cx="242" cy="54.8" rx="1.4" ry=".9" fill="#fff" opacity=".6"/>
+    <path d="M238 66 Q228 71 219 66" stroke="${k}" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <circle class="eye" cx="209" cy="45" r="4.2" fill="#0a0a0a"/>
+    <circle cx="210.4" cy="43.6" r="1.4" fill="#fff"/>
+    <path d="M203 39 Q209 36 215 39" stroke="${k}" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <g transform="translate(172 82) rotate(38)">
+      <path d="M-21 -6 A21 6.5 0 0 0 21 -6" fill="none" stroke="${band}" stroke-width="7" stroke-linecap="round"/>
+      <path d="M-21 -6 A21 6.5 0 0 0 21 -6" fill="none" stroke="#0d3b2e" stroke-width="1.2" stroke-linecap="round" opacity=".35"/>
+      <circle cx="0" cy="-6" r="2.2" fill="#0d3b2e" opacity=".45"/>
+      <circle cx="-3.2" cy="-9.4" r=".9" fill="#0d3b2e" opacity=".4"/>
+      <circle cx="0" cy="-10.4" r=".9" fill="#0d3b2e" opacity=".4"/>
+      <circle cx="3.2" cy="-9.4" r=".9" fill="#0d3b2e" opacity=".4"/>
+    </g>
+  </svg>`;
+}
+
+const dogData = [
+  { id:'bruno', name:'Bruno', story:'guards a chai stall every night',
+    fur:'#b98f5c', dark:'#7a5a2e', band:'#f4efe6', ear:'floppy',
+    question:'Bruno trusts you. What do you do?',
+    answers:[
+      {text:'Sit beside him, share my chai', kind:true},
+      {text:'Snap a photo and walk away', kind:false},
+      {text:'Shoo him off, he might bite', kind:false},
+      {text:'Ignore him, not my problem', kind:false}
+    ]},
+  { id:'moti', name:'Moti', story:'mother of four, feeds them first',
+    fur:'#cfad82', dark:'#8b6b4a', band:'#f4efe6', ear:'floppy', blaze:true,
+    question:'Moti\'s puppies are hungry. You…',
+    answers:[
+      {text:'Feed the mother first — she needs strength', kind:true},
+      {text:'Feed only the puppies, they\'re cuter', kind:false},
+      {text:'Keep walking, not my responsibility', kind:false},
+      {text:'Call someone else to deal with it', kind:false}
+    ]},
+  { id:'sheru', name:'Sheru', story:'walks kids to school every morning',
+    fur:'#d9b68c', dark:'#a4805a', band:'#f4efe6', ear:'pointy',
+    question:'Sheru walks kids home in the rain. You…',
+    answers:[
+      {text:'Share my umbrella, walk with him', kind:true},
+      {text:'Honk and drive past quickly', kind:false},
+      {text:'Worry he\'ll bite the kids', kind:false},
+      {text:'Nothing — he\'s just a street dog', kind:false}
+    ]},
+  { id:'kaalu', name:'Kaalu', story:'sleeps under the same tree for 3 years',
+    fur:'#5e4634', dark:'#33220f', band:'#f4efe6', ear:'floppy',
+    question:'Kaalu sleeps under the same tree. You…',
+    answers:[
+      {text:'Bring him a blanket for winter', kind:true},
+      {text:'Shoo him away, it\'s public space', kind:false},
+      {text:'Take a selfie with him for clout', kind:false},
+      {text:'Call animal control', kind:false}
+    ]},
+  { id:'tina', name:'Tina', story:'waits at the bus stop for her human',
+    fur:'#e3bd94', dark:'#b08850', band:'#f4efe6', ear:'pointy', blaze:true,
+    question:'Tina\'s human moved away. She still waits. You…',
+    answers:[
+      {text:'Sit with her, offer water, be present', kind:true},
+      {text:'Report her to the shelter', kind:false},
+      {text:'Laugh, dogs are so dumb', kind:false},
+      {text:'Take her home without asking anyone', kind:false}
+    ]},
+  { id:'raja', name:'Raja', story:'the oldest of the pack, still smiling',
+    fur:'#8f6f4d', dark:'#54351a', band:'#f4efe6', ear:'floppy',
+    question:'Raja is old and slow. He can\'t keep up. You…',
+    answers:[
+      {text:'Walk at his pace, he\'s earned it', kind:true},
+      {text:'Rush past — he\'s too slow', kind:false},
+      {text:'Leave him behind, he\'s useless now', kind:false},
+      {text:'Give him to a shelter, he\'s a burden', kind:false}
+    ]}
+];
+
+const storyScenes = [
+  { num:'01', title:'Morning',
+    text:'The chai stall opens at six. He knows the sound of the kettle better than any alarm clock. He stretches, shakes off the night, and waits at a polite distance.',
+    sky:'#f0c987', dog:{ fur:'#b98f5c', dark:'#7a5a2e', band:'#f4efe6', ear:'floppy' } },
+  { num:'02', title:'Noon',
+    text:'The sun is high. He finds shade under a parked scooter, keeps one ear up for footsteps. Someone leaves half a biscuit on the wall. He eats it slowly, as if it were a feast.',
+    sky:'#8fb8a0', dog:{ fur:'#cfad82', dark:'#8b6b4a', band:'#f4efe6', ear:'floppy', blaze:true } },
+  { num:'03', title:'Evening',
+    text:'The children come home from school. He walks them to their gate — a small habit he has kept for three years. Nobody asked him to. He simply decided it was his job.',
+    sky:'#e8a86a', dog:{ fur:'#d9b68c', dark:'#a4805a', band:'#f4efe6', ear:'pointy' } },
+  { num:'04', title:'Night',
+    text:'The street empties. He curls under the same tree, the same spot, the same small patch of warmth. He has learned which stones stay warm the longest.',
+    sky:'#2a4a5c', dog:{ fur:'#5e4634', dark:'#33220f', band:'#f4efe6', ear:'floppy' } },
+  { num:'05', title:'A Small Hope',
+    text:'Every day, someone stops. Someone leaves water. Someone kneels down. And that one small kindness is what makes the next day possible — for him and for every street dog like him.',
+    sky:'#f4efe6', dog:{ fur:'#e3bd94', dark:'#b08850', band:'#f4efe6', ear:'pointy', blaze:true }, cta:true }
+];
+
+let storyIndex = 0;
+let storyTimer = null;
+const STORY_INTERVAL = 7000;
+
+function renderStoryScene(i) {
+  const scene = storyScenes[i];
+  const dog = scene.dog;
+  const dogEl = document.getElementById('sceneDog');
+  const textEl = document.getElementById('sceneText');
+  const skyEl = document.getElementById('storySky');
+
+  dogEl.classList.add('fade');
+  textEl.classList.add('fade');
+
+  setTimeout(() => {
+    dogEl.innerHTML = createDogSVG({ ...dog, id: 'story-' + i });
+    textEl.textContent = scene.text;
+    skyEl.style.background = `linear-gradient(180deg, ${scene.sky}, transparent)`;
+    document.getElementById('sceneNum').textContent = `Scene ${scene.num} of 05`;
+    document.getElementById('sceneTitle').textContent = scene.title;
+    document.getElementById('storyCta').style.display = scene.cta ? 'inline-block' : 'none';
+    dogEl.classList.remove('fade');
+    textEl.classList.remove('fade');
+  }, 350);
+
+  document.querySelectorAll('#sceneDots button').forEach((d, idx) => {
+    d.classList.toggle('on', idx === i);
+  });
+
+  storyIndex = i;
+  resetStoryTimer();
+}
+
+function renderStoryDots() {
+  const dots = document.getElementById('sceneDots');
+  dots.innerHTML = storyScenes.map((_, i) =>
+    `<button data-i="${i}" aria-label="Scene ${i + 1}"></button>`
+  ).join('');
+  dots.querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => renderStoryScene(+b.dataset.i));
+  });
+}
+
+function resetStoryTimer() {
+  if (storyTimer) clearInterval(storyTimer);
+  const fill = document.getElementById('storyProgress');
+  let elapsed = 0;
+  fill.style.width = '0%';
+  storyTimer = setInterval(() => {
+    elapsed += 100;
+    fill.style.width = Math.min(100, (elapsed / STORY_INTERVAL) * 100) + '%';
+    if (elapsed >= STORY_INTERVAL) {
+      elapsed = 0;
+      renderStoryScene((storyIndex + 1) % storyScenes.length);
+    }
+  }, 100);
+}
+
+/* ============================================================
+   IMPACT QUIZ
+   ============================================================ */
+const impactQuiz = { current: 0, answers: {}, total: 4 };
+
+function computeImpactResult(a) {
+  const heart = a.q1, time = a.q2, give = a.q3, impact = a.q4;
+
+  if (give === 'home' || impact === 'family') {
+    return {
+      key: 'foster', emoji: '⌂',
+      title: 'The Foster',
+      tagline: 'You give the greatest gift — a home',
+      desc: 'You want to change a dog\'s life forever. The kindest thing you can do is open your home — even for a few weeks as a foster. We handle food, vet care, and find the permanent family. You provide the love.',
+      primary: { label: 'Start fostering a dog', href: 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hi, I want to foster a street dog. Can you help me get started?') }
+    };
+  }
+  if (give === 'voice' || impact === 'movement' || heart === 'storyteller') {
+    return {
+      key: 'amplifier', emoji: '✦',
+      title: 'The Amplifier',
+      tagline: 'Your voice carries further than you think',
+      desc: 'You may not have money or time to give, but you have something more valuable — attention. Sharing one post, tagging one friend, telling one story can bring us ten new volunteers. That is real change.',
+      primary: { label: 'Share the trail on WhatsApp', action: 'share' }
+    };
+  }
+  if ((time === 'few-hours-week' || time === 'full') && (give === 'time' || heart === 'rescuer')) {
+    return {
+      key: 'volunteer', emoji: '❋',
+      title: 'The Volunteer',
+      tagline: 'Hands on, heart first',
+      desc: 'You want to be there when it matters. Feeding drives, rescue missions, transport help — you can do all of it. Our volunteers are the heartbeat of everything we do. Come join us.',
+      primary: { label: 'Register as a volunteer', href: 'https://forms.gle/3tuZ3dyGd5mbwYPa8' }
+    };
+  }
+  if (give === 'money' || heart === 'feeder') {
+    return {
+      key: 'feeder', emoji: '♥',
+      title: 'The Feeder',
+      tagline: 'Warm, consistent, quietly powerful',
+      desc: 'You believe no dog should sleep hungry. A small monthly donation — even ₹100 — feeds 10 meals and keeps a dog alive and safe. Steady kindness like yours is what we rely on most.',
+      primary: { label: 'Donate via UPI now', action: 'donate' }
+    };
+  }
+  if (heart === 'rescuer' || impact === 'emergency') {
+    return {
+      key: 'emergency', emoji: '✚',
+      title: 'The Emergency Supporter',
+      tagline: 'You show up when it matters',
+      desc: 'You want to be the person a dog can count on in the worst moment. A monthly gift funds emergency rescue kits, medicines, and ambulance fuel — so when we get the call, we never say no.',
+      primary: { label: 'Donate via UPI now', action: 'donate' }
+    };
+  }
+  return {
+    key: 'feeder', emoji: '♥',
+    title: 'The Feeder',
+    tagline: 'Warm, consistent, quietly powerful',
+    desc: 'You believe no dog should sleep hungry. A small monthly donation — even ₹100 — feeds 10 meals and keeps a dog alive and safe.',
+    primary: { label: 'Donate via UPI now', action: 'donate' }
+  };
+}
+
+function renderQuizProgress() {
+  const bars = document.querySelectorAll('#quizProgress i');
+  bars.forEach((b, i) => {
+    b.classList.remove('on','done');
+    if (i < impactQuiz.current) b.classList.add('done');
+    if (i === impactQuiz.current) b.classList.add('on');
+  });
+}
+
+function showQuizStep(idx) {
+  document.querySelectorAll('.quiz-step').forEach(s => {
+    s.classList.toggle('active', +s.dataset.step === idx);
+  });
+  document.getElementById('quizResult').classList.remove('active');
+  impactQuiz.current = idx;
+  renderQuizProgress();
+}
+
+function showQuizResult() {
+  const r = computeImpactResult(impactQuiz.answers);
+  document.getElementById('quizResultEmoji').textContent = r.emoji;
+  document.getElementById('quizResultTitle').textContent = r.title;
+  document.getElementById('quizResultTagline').textContent = r.tagline;
+  document.getElementById('quizResultDesc').textContent = r.desc;
+
+  const actionsWrap = document.getElementById('quizResultActions');
+  actionsWrap.innerHTML = '';
+
+  const p = r.primary;
+  if (p.action === 'donate') {
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-gold';
+    btn.textContent = p.label;
+    btn.addEventListener('click', () => {
+      document.getElementById('care').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => { try { document.getElementById('feedBtn').click(); } catch(e) {} }, 700);
+    });
+    actionsWrap.appendChild(btn);
+  } else if (p.action === 'share') {
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-gold';
+    btn.textContent = p.label;
+    btn.addEventListener('click', () => {
+      const msg = encodeURIComponent(
+        `I took the "What kind of giver are you?" quiz for Stray Care Foundation and I am ${r.title}. If you love dogs, take it too: ${location.href}`
+      );
+      window.open('https://wa.me/?text=' + msg, '_blank', 'noopener');
+    });
+    actionsWrap.appendChild(btn);
+  } else if (p.href) {
+    const a = document.createElement('a');
+    a.className = 'btn btn-gold';
+    a.textContent = p.label;
+    a.href = p.href;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    actionsWrap.appendChild(a);
+  }
+
+  const btn2 = document.createElement('a');
+  btn2.className = 'btn btn-soft';
+  btn2.textContent = 'Or walk the Kindness Trail';
+  btn2.href = '#trail';
+  actionsWrap.appendChild(btn2);
+
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('quizResult').classList.add('active');
+  renderQuizProgress();
+  document.querySelectorAll('#quizProgress i').forEach(b => { b.classList.remove('on'); b.classList.add('done'); });
+  launchConfetti();
+  impactQuiz._result = r;
+}
+
+document.querySelectorAll('.quiz-options').forEach(group => {
+  group.addEventListener('click', e => {
+    const btn = e.target.closest('.quiz-option');
+    if (!btn) return;
+    const quizKey = group.dataset.quiz;
+    impactQuiz.answers[quizKey] = btn.dataset.value;
+    group.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    setTimeout(() => {
+      if (impactQuiz.current < impactQuiz.total - 1) showQuizStep(impactQuiz.current + 1);
+      else showQuizResult();
+    }, 320);
+  });
+});
+
+document.getElementById('quizRestart').addEventListener('click', () => {
+  impactQuiz.answers = {};
+  impactQuiz.current = 0;
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+  showQuizStep(0);
+});
+
+document.getElementById('quizShareWa').addEventListener('click', () => {
+  const r = impactQuiz._result; if (!r) return;
+  const msg = encodeURIComponent(
+    `I took the "What kind of giver are you?" quiz for Stray Care Foundation and I am ${r.title} — ${r.tagline}. Take it too: ${location.href}`
+  );
+  window.open('https://wa.me/?text=' + msg, '_blank', 'noopener');
+});
+
+document.getElementById('quizShareTw').addEventListener('click', () => {
+  const r = impactQuiz._result; if (!r) return;
+  const text = encodeURIComponent(`I'm ${r.title} — ${r.tagline}. Take the Stray Care Foundation giver quiz:`);
+  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(location.href)}`, '_blank', 'noopener');
+});
+
+document.getElementById('quizCopy').addEventListener('click', async () => {
+  const r = impactQuiz._result; if (!r) return;
+  const text = `My Stray Care Foundation giver result: ${r.title} — ${r.tagline}. ${location.href}`;
+  try { await navigator.clipboard.writeText(text); toast('Result copied. Paste it anywhere.'); }
+  catch { toast('Could not copy. Please copy the text manually.'); }
+});
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let userName = '', userEmail = '', score = 0, currentDog = null;
+const answeredDogs = new Set();
+const $ = id => document.getElementById(id);
+const dogGrid = $('dogGrid'), scoreValue = $('scoreValue'), progress = $('progress'),
+  modalBackdrop = $('modalBackdrop'), introBackdrop = $('introBackdrop'),
+  introForm = $('introForm'), introStatus = $('introStatus'),
+  houseReveal = $('houseReveal'), letterStatus = $('letterStatus'),
+  qrBackdrop = $('qrBackdrop');
+
+const STORAGE_KEY = 'scf_kindness_trail_v5';
+
+function saveProgress() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      userName, userEmail, score,
+      answered: Array.from(answeredDogs),
+      ts: Date.now()
+    }));
+  } catch(e) {}
+}
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const d = JSON.parse(raw);
+    if (!d || !d.answered) return false;
+    userName = d.userName || '';
+    userEmail = d.userEmail || '';
+    score = d.score || 0;
+    (d.answered || []).forEach(id => answeredDogs.add(id));
+    return true;
+  } catch(e) { return false; }
+}
+
+function renderProgress() {
+  progress.innerHTML = dogData.map((d, i) => `<i class="${i < answeredDogs.size ? 'on' : ''}"></i>`).join('');
+}
+
+function getDogOfDay() {
+  const daysSinceEpoch = Math.floor(Date.now() / 86400000);
+  return dogData[daysSinceEpoch % dogData.length].id;
+}
+
+function renderDogs() {
+  dogGrid.innerHTML = '';
+  const today = getDogOfDay();
+  dogData.forEach(dog => {
+    const card = document.createElement('div');
+    card.className = 'dog-card';
+    if (dog.id === today) card.classList.add('dog-of-day');
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Hear ' + dog.name + "'s story");
+    if (answeredDogs.has(dog.id)) card.classList.add('answered');
+    card.innerHTML = `
+      ${dog.id === today ? '<div class="dog-of-day-badge">Dog of the day</div>' : ''}
+      ${dog.id === 'kaalu' ? '<div class="zzz">z z Z</div>' : ''}
+      <div class="dog-svg-wrap">${createDogSVG(dog)}</div>
+      <div class="dog-name">${dog.name}</div>
+      <div class="dog-story">${dog.story}</div>`;
+    const open = () => { if (treatMode) { giveTreat(card); return; } openQuiz(dog, card); };
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    dogGrid.appendChild(card);
+  });
+  renderProgress();
+  scoreValue.textContent = score;
+}
+
+function openQuiz(dog, card) {
+  if (answeredDogs.has(dog.id)) return;
+  currentDog = { dog, card };
+  hearts(card);
+  $('modalDogName').textContent = dog.name;
+  $('modalDogStory').textContent = dog.story;
+  $('modalQuestion').textContent = dog.question;
+  const box = $('modalAnswers');
+  box.innerHTML = '';
+  dog.answers.forEach(a => {
+    const btn = document.createElement('button');
+    btn.className = 'modal-answer';
+    btn.textContent = a.text;
+    btn.addEventListener('click', () => handleAnswer(a));
+    box.appendChild(btn);
+  });
+  modalBackdrop.classList.add('show');
+}
+function closeQuizModal() { modalBackdrop.classList.remove('show'); }
+modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) closeQuizModal(); });
+$('modalX').addEventListener('click', closeQuizModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQuizModal(); });
+
+function handleAnswer(a) {
+  if (!currentDog) return;
+  const { dog, card } = currentDog;
+  if (a.kind) {
+    card.classList.add('happy');
+    setTimeout(() => card.classList.remove('happy'), 900);
+  }
+  if (a.kind && !answeredDogs.has(dog.id)) { score++; scoreValue.textContent = score; }
+  answeredDogs.add(dog.id);
+  card.classList.add('answered');
+  renderProgress();
+  saveProgress();
+  closeQuizModal();
+  setTimeout(() => {
+    if (answeredDogs.size >= dogData.length) {
+      launchConfetti();
+      setTimeout(revealHouse, 400);
+    }
+  }, 600);
+}
+
+const matches = {
+  6: { dog:'moti',  title:'The Mother Heart',    desc:'You put care first in every choice. You feed the ones who feed others. Street dogs are lucky when you walk by.', quote:'Feed the mother, and the whole family eats.' },
+  5: { dog:'bruno', title:'The Loyal Guardian',  desc:'You show up, sit down and stay. Steady kindness like yours is what a street dog remembers for years.', quote:'I will be here tomorrow too.' },
+  4: { dog:'sheru', title:'The Brave Walker',    desc:'You walk beside the ones others fear. Kind and bold, you protect without being asked.', quote:'Walk with me. The rain is nothing.' },
+  3: { dog:'tina',  title:'The Patient Friend',  desc:'You wait, you listen, you care. A few more kind choices and you become a real hero to strays.', quote:'I will wait as long as it takes.' },
+  2: { dog:'kaalu', title:'The Gentle Sleeper',  desc:'Your heart is kind but still waking up. A blanket or a bowl of water can change a street dog\'s winter.', quote:'A small blanket is a big warm.' },
+  1: { dog:'raja',  title:'The Wise Elder',      desc:'You are only starting the trail. Slow down, look at each dog, and try again. Raja is patient.', quote:'Slow steps still reach the end.' }
+};
+function matchFor(sc) { return matches[sc >= 6 ? 6 : sc >= 5 ? 5 : sc >= 4 ? 4 : sc >= 3 ? 3 : sc >= 2 ? 2 : 1]; }
+
+function revealHouse() {
+  const m = matchFor(score), dog = dogData.find(d => d.id === m.dog);
+  $('matchDog').innerHTML = createDogSVG({ ...dog, id: 'match-' + dog.id });
+  $('houseName').textContent = dog.name;
+  $('matchTitle').textContent = m.title;
+  $('houseDesc').textContent = m.desc;
+  $('houseQuote').textContent = `"${m.quote}"`;
+  houseReveal.classList.add('show');
+  buildCard(dog.name);
+  setTimeout(() => sendLetter(dog.name, m), 1200);
+}
+
+/* Close handlers for reveal */
+$('revealX').addEventListener('click', () => houseReveal.classList.remove('show'));
+houseReveal.addEventListener('click', e => { if (e.target === houseReveal) houseReveal.classList.remove('show'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && houseReveal.classList.contains('show')) houseReveal.classList.remove('show'); });
+
+async function sendLetter(dogName, m) {
+  letterStatus.textContent = `Sending your match to ${userEmail}…`;
+  letterStatus.className = 'letter-status sending';
+  if (!window.emailjs) {
+    letterStatus.textContent = 'Email service not loaded. Please refresh and try again.';
+    letterStatus.className = 'letter-status error';
+    return;
+  }
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_name: userName, to_email: userEmail, dog_name: dogName,
+      match_title: m.title, match_desc: m.desc, match_quote: m.quote,
+      score: `${score}/6`
+    });
+    letterStatus.textContent = `Your match is on its way to ${userEmail}. Check your inbox.`;
+    letterStatus.className = 'letter-status success';
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    letterStatus.textContent = 'We could not send the email just now. But you still did a good thing.';
+    letterStatus.className = 'letter-status error';
+  }
+}
+
+introForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('introName').value.trim(), email = $('introEmail').value.trim();
+  if (!name || !email) { introStatus.textContent = 'Please fill in your name and email.'; return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { introStatus.textContent = 'That email address looks incorrect.'; return; }
+  userName = name; userEmail = email;
+  saveProgress();
+  introBackdrop.classList.remove('show');
+  setTimeout(() => toast('Tip: tap "Give treats" at bottom-left, then tap a dog.'), 2200);
+});
+
+$('resetBtn').addEventListener('click', () => {
+  score = 0; answeredDogs.clear(); userName = ''; userEmail = '';
+  scoreValue.textContent = '0';
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  houseReveal.classList.remove('show');
+  letterStatus.textContent = ''; letterStatus.className = 'letter-status';
+  introForm.reset(); introStatus.textContent = '';
+  introBackdrop.classList.add('show');
+  renderDogs();
+});
+
+$('copyMatch').addEventListener('click', async () => {
+  const m = matchFor(score), dog = dogData.find(d => d.id === m.dog);
+  const text = `My Stray Care Foundation kindness match: ${dog.name} — ${m.title}. Kind to ${score}/6 street dogs. ${location.href}`;
+  try { await navigator.clipboard.writeText(text); toast('Result copied. Paste it anywhere.'); }
+  catch { toast('Could not copy. Please copy the text manually.'); }
+});
+
+$('twShare').addEventListener('click', () => {
+  const m = matchFor(score), dog = dogData.find(d => d.id === m.dog);
+  const text = encodeURIComponent(`My Stray Care Foundation kindness match is ${dog.name} — ${m.title}. Kind to ${score}/6 street dogs.`);
+  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(location.href)}`, '_blank', 'noopener');
+});
+
+function hearts(card) {
+  const r = card.getBoundingClientRect();
+  for (let i = 0; i < 5; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = ['♥', '✦', '·'][i % 3];
+    h.style.left = (r.left + r.width / 2 + (Math.random() - .5) * 120) + 'px';
+    h.style.top = (r.top + r.height / 3) + 'px';
+    h.style.animationDelay = (i * .08) + 's';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 1500);
+  }
+}
+
+function launchConfetti() {
+  const colors = ['#0d3b2e', '#d4a843', '#8fb8a0', '#e8c46a', '#f4efe6'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDuration = (2 + Math.random() * 2) + 's';
+    c.style.animationDelay = (Math.random() * 0.6) + 's';
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4500);
+  }
+}
+
+let toastT;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+let cardCanvas, cardHouse = '';
+function buildCard(name) {
+  cardHouse = name;
+  const dog = dogData.find(d => d.name === name), m = matchFor(score);
+  const c = cardCanvas = document.createElement('canvas');
+  c.width = 1080; c.height = 1350;
+  const x = c.getContext('2d');
+  x.fillStyle = '#f4efe6'; x.fillRect(0, 0, 1080, 1350);
+  x.fillStyle = '#0d3b2e'; x.fillRect(0, 0, 1080, 220);
+  x.textAlign = 'center';
+  x.fillStyle = '#f4efe6'; x.font = '600 42px "Fraunces",serif';
+  x.fillText('STRAY CARE FOUNDATION', 540, 105);
+  x.font = '500 24px "Inter",sans-serif';
+  x.fillText('THE KINDNESS TRAIL', 540, 155);
+  x.fillStyle = '#0d3b2e'; x.font = '600 72px "Fraunces",serif';
+  x.fillText('The Kindness Trail', 540, 330);
+  x.fillStyle = '#4a5548'; x.font = 'italic 38px "Fraunces",serif';
+  x.fillText(`${userName || 'A kind human'}'s dog match`, 540, 400);
+  const svg = createDogSVG({ ...dog, id: 'card-' + dog.id }).replace('<svg viewBox', '<svg width="520" height="400" viewBox');
+  const img = new Image();
+  img.onload = () => {
+    x.drawImage(img, 280, 430, 520, 400);
+    x.fillStyle = '#0d3b2e';
+    x.font = '600 130px "Fraunces",serif';
+    x.fillText(dog.name, 540, 940);
+    x.fillStyle = '#d4a843';
+    x.font = 'italic 48px "Fraunces",serif';
+    x.fillText(m.title, 540, 1010);
+    x.fillStyle = '#4a5548';
+    x.font = '400 34px "Inter",sans-serif';
+    x.fillText(`Kind to ${score} of 6 street dogs`, 540, 1080);
+    for (let i = 0; i < 6; i++) {
+      x.beginPath();
+      x.arc(300 + i * 96, 1140, 18, 0, 7);
+      x.fillStyle = i < score ? '#0d3b2e' : '#d8d2c4';
+      x.fill();
+    }
+    x.fillStyle = '#4a5548';
+    x.font = 'italic 32px "Fraunces",serif';
+    x.fillText('Walk the trail. Meet the dogs. Be kind.', 540, 1225);
+    x.fillStyle = '#0d3b2e';
+    x.font = '600 32px "Inter",sans-serif';
+    x.fillText('@stray.care.foundation', 540, 1300);
+  };
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+$('dlCard').addEventListener('click', () => {
+  if (!cardCanvas) return;
+  const a = document.createElement('a');
+  a.download = 'stray-care-' + cardHouse.toLowerCase() + '.png';
+  a.href = cardCanvas.toDataURL('image/png');
+  a.click();
+  toast('Card saved. Post it and tag a friend.');
+});
+
+$('printCard').addEventListener('click', () => { window.print(); });
+
+$('waShare').addEventListener('click', () => {
+  const t = `My dog match on Stray Care Foundation's Kindness Trail is ${cardHouse}. Kind to ${score}/6 street dogs! Take the walk: ${location.href}`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
+});
+
+const feedDog = $('feedDog');
+dogData.forEach(d => feedDog.insertAdjacentHTML('beforeend', `<option>${d.name}</option>`));
+
+let amount = 50;
+const chipsWrap = $('chips');
+chipsWrap.innerHTML = [50, 100, 250].map(v =>
+  `<button type="button" class="chip${v === 50 ? ' on' : ''}" data-v="${v}">₹${v}</button>`
+).join('') + `<button type="button" class="chip" data-v="custom">Custom</button>`;
+
+let customInput = null;
+
+function updateImpactPreview() {
+  const meals = Math.floor(amount / 10);
+  const days = (amount / 30).toFixed(1);
+  const line = $('impactLine');
+  if (!amount || amount < 1) {
+    line.innerHTML = `Pick an amount to see your impact.`;
+    return;
+  }
+  line.innerHTML =
+    `Your <b>₹${amount}</b> will feed <b>${meals} meal${meals === 1 ? '' : 's'}</b> ` +
+    `and give <b>${days} day${days === '1.0' ? '' : 's'}</b> of clean water to street dogs.`;
+}
+
+chipsWrap.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  chipsWrap.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === b));
+  const v = b.dataset.v;
+  if (v === 'custom') {
+    if (!customInput) {
+      customInput = document.createElement('input');
+      customInput.type = 'number';
+      customInput.min = '1';
+      customInput.placeholder = 'Enter amount in ₹';
+      customInput.style.cssText = 'width:100%;margin-top:4px;background:var(--cream);border:1.5px solid rgba(13,59,46,.14);border-radius:40px;padding:13px 18px;font:.95rem Inter,sans-serif;outline:none';
+      customInput.addEventListener('input', () => {
+        amount = Math.max(0, parseInt(customInput.value, 10) || 0);
+        updateImpactPreview();
+      });
+      chipsWrap.parentNode.insertBefore(customInput, chipsWrap.nextSibling);
+      customInput.focus();
+    }
+    amount = 0;
+    updateImpactPreview();
+  } else {
+    if (customInput) { customInput.remove(); customInput = null; }
+    amount = +v;
+    updateImpactPreview();
+  }
+});
+updateImpactPreview();
+
+$('feedBtn').addEventListener('click', () => {
+  if (!amount || amount < 1) { toast('Please pick or enter a valid amount.'); return; }
+  const dogName = feedDog.value;
+  const note = `Donation for ${dogName} — ${Math.floor(amount / 10)} meals`;
+  $('qrAmountBig').textContent = amount;
+  $('qrForLine').textContent = `for ${dogName} · about ${Math.floor(amount / 10)} meals`;
+  $('qrImage').src = buildLockedUPIQR(amount, note);
+  $('qrImage').alt = `UPI QR to pay ₹${amount} to ${UPI_NAME}`;
+  $('qrUpiId').textContent = UPI_ID;
+  $('qrThanks').classList.remove('show');
+  qrBackdrop.classList.add('show');
+});
+
+$('qrX').addEventListener('click', () => qrBackdrop.classList.remove('show'));
+qrBackdrop.addEventListener('click', e => { if (e.target === qrBackdrop) qrBackdrop.classList.remove('show'); });
+
+$('qrCopy').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(UPI_ID);
+    toast('UPI ID copied. Paste it in your UPI app.');
+    $('qrThanks').classList.add('show');
+  } catch {
+    toast('Could not copy. Please select the UPI ID manually.');
+  }
+});
+
+$('paidBtn').addEventListener('click', () => {
+  $('qrThanks').classList.add('show');
+  hearts($('paidBtn'));
+  toast('Thank you. You are a good human.');
+});
+
+$('repBtn').addEventListener('click', () => {
+  const area = $('repArea').value.trim();
+  const note = $('repNote').value.trim();
+  if (!area) { toast('Please enter the area so volunteers can find the dog.'); return; }
+  const message =
+    `Hello Stray Care Foundation,\n\n` +
+    `I want to report a stray dog.\n\n` +
+    `Area: ${area}\n` +
+    (note ? `Details: ${note}\n` : '') +
+    `\nSent from the Kindness Trail page.`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener');
+  toast('Opening WhatsApp with your report.');
+  $('repArea').value = '';
+  $('repNote').value = '';
+});
+
+$('instaBtn').addEventListener('click', () => {
+  window.open(INSTAGRAM_URL, '_blank', 'noopener');
+  toast('Opening Instagram. Tag us and share the trail.');
+});
+
+document.querySelectorAll('.stat b').forEach(el => {
+  new IntersectionObserver((en, ob) => en.forEach(e => {
+    if (!e.isIntersecting) return;
+    ob.disconnect();
+    const n = +el.dataset.n; let i = 0;
+    const t = setInterval(() => {
+      i = Math.min(n, i + Math.ceil(n / 50));
+      el.textContent = i.toLocaleString('en-IN');
+      if (i >= n) clearInterval(t);
+    }, 30);
+  }), { threshold: .6 }).observe(el);
+});
+
+let treatMode = false, treats = 0;
+$('treatBtn').addEventListener('click', () => {
+  treatMode = !treatMode;
+  document.body.classList.toggle('treat-mode', treatMode);
+  $('treatBtn').setAttribute('aria-pressed', treatMode);
+  toast(treatMode ? 'Treat mode on. Tap a dog to give a treat.' : 'Treat mode off.');
+});
+function giveTreat(card) {
+  treats++;
+  $('treatCount').textContent = treats;
+  card.classList.add('happy');
+  setTimeout(() => card.classList.remove('happy'), 900);
+  hearts(card);
+  const r = card.getBoundingClientRect();
+  const b = document.createElement('div');
+  b.className = 'bone';
+  b.textContent = '·';
+  b.style.left = (r.left + r.width / 2) + 'px';
+  b.style.top = (r.top + r.height / 2) + 'px';
+  document.body.appendChild(b);
+  setTimeout(() => b.remove(), 1100);
+  if (treats % 5 === 0) toast(`${treats} treats given. Good human.`);
+}
+function petMatch() {
+  const el = $('matchDog');
+  el.classList.add('happy');
+  setTimeout(() => el.classList.remove('happy'), 900);
+  hearts(el);
+  treats++;
+  $('treatCount').textContent = treats;
+  const b = document.createElement('div'), r = el.getBoundingClientRect();
+  b.className = 'bone';
+  b.textContent = '·';
+  b.style.left = (r.left + r.width / 2) + 'px';
+  b.style.top = (r.top + r.height / 2) + 'px';
+  document.body.appendChild(b);
+  setTimeout(() => b.remove(), 1100);
+}
+$('matchDog').addEventListener('click', petMatch);
+$('treatResult').addEventListener('click', petMatch);
+
+document.getElementById('scenePrev').addEventListener('click', () => {
+  renderStoryScene((storyIndex - 1 + storyScenes.length) % storyScenes.length);
+});
+document.getElementById('sceneNext').addEventListener('click', () => {
+  renderStoryScene((storyIndex + 1) % storyScenes.length);
+});
+document.getElementById('storyCta').addEventListener('click', () => {
+  document.getElementById('care').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  toast('Pick a dog and donate in one tap.');
+});
+
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea, select')) return;
+  const story = document.getElementById('story');
+  if (!story) return;
+  const r = story.getBoundingClientRect();
+  const inView = r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
+  if (!inView) return;
+  if (e.key === 'ArrowLeft') { renderStoryScene((storyIndex - 1 + storyScenes.length) % storyScenes.length); }
+  if (e.key === 'ArrowRight') { renderStoryScene((storyIndex + 1) % storyScenes.length); }
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+renderDogs();
+renderStoryDots();
+renderStoryScene(0);
+renderQuizProgress();
+
+if (loadProgress()) {
+  if (userName && userEmail) {
+    introBackdrop.classList.remove('show');
+    setTimeout(() => toast(`Welcome back, ${userName}. Your trail is saved.`), 900);
+  }
+  scoreValue.textContent = score;
+  renderDogs();
+}
+
+if (answeredDogs.size >= dogData.length) {
+  setTimeout(() => {
+    const btn = document.createElement('button');
+    btn.className = 'btn';
+    btn.textContent = 'See my kindness match';
+    btn.style.position = 'fixed';
+    btn.style.right = '20px';
+    btn.style.bottom = '20px';
+    btn.style.zIndex = '60';
+    btn.style.padding = '12px 22px';
+    btn.style.fontSize = '.82rem';
+    btn.addEventListener('click', revealHouse);
+    document.body.appendChild(btn);
+  }, 1200);
+}
+</script>
+</body>
+</html>
